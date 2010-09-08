@@ -80,28 +80,28 @@ public:
         return pointer->pointer;
     }
     
-    bool operator==() {
-        
+    bool const operator==(SmartPtr<Type> const &other) {
+        return pointer->pointer == other.pointer;
     }
     
-    bool operator!=() {
-        
+    bool const operator!=(SmartPtr<Type> const &other) {
+        return pointer->pointer != other.pointer;
     }
     
-    bool operator<() {
-        
+    bool const operator<(SmartPtr<Type> const &other) {
+        return pointer->pointer < other.pointer;
     }
     
-    bool operator<=() {
-        
+    bool const operator<=(SmartPtr<Type> const &other) {
+        return pointer->pointer <= other.pointer;
     }
     
-    bool operator>() {
-        
+    bool const operator>(SmartPtr<Type> const &other) {
+        return pointer->pointer > other.pointer;
     }
     
-    bool operator>=() {
-        
+    bool const operator>=(SmartPtr<Type> const &other) {
+        return pointer->pointer >= other.pointer;
     }
 };/* End SmartPtr - By Tum. */
 
