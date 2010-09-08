@@ -48,15 +48,17 @@
 #include <stdio.h>
 #include <new>
 
-// In this version, pointers are used for identification
+// Define the data type for the links
+// This version has void pointers for identification
+#define DATA_TYPE void*
 
 template <typename Type>
 class Link {
 public:
-    Link<Type> next; // To make sure this is who we think it is.
-    void *data;
+    Link<Type> next; // To make sure this is what we think it is.
+    DATA_TYPE data;
 
-    Link(void *data) {
+    Link(DATA_TYPE data) {
         this->data = data;
     }
 };
@@ -64,7 +66,7 @@ public:
 template <typename Type>
 class List {
 private:
-    Type *pointee; //------------------ Assignment Modification
+    Type *pointer; //------------------ Assignment Modification
     List<Type> *first;
     List<Type> *last;
 
@@ -75,8 +77,8 @@ public:
         last = NULL;
     }
     
-    SLL(Type *pointee) {
-        this->pointee = pointee; //---- Assignment Modification
+    SLL(Type *pointer) {
+        this->pointer = pointer; //---- Assignment Modification
     }
     
     ~SLL() {
@@ -96,7 +98,7 @@ public:
     
     const List<Type> *getLast() { return last; }
     
-    int search(void *data) {
+    int search(DATA_TYPE data) {
         if (isEmpty())
             return 0;
         
@@ -108,22 +110,21 @@ public:
     }
     
     /* Mutators */
-    int add(void *data) {
+    int add(DATA_TYPE data) {
         if(search(data)) // No duplicates - remove for preformace
             return 0;
         
         if (isEmpty()) {
-            first = new List<Type>();
-            first.data = data;
+            first = new List<Type>(data);
+            last = first;
         } else {
-            last->next = new List<Type>();
-            last->next.data = data;
+            last->next = new List<Type>(data);
             last = last->next;
         }
         return 1;
     }
     
-    void del(void *del) {
+    void del(DATA_TYPE del) {
         if (isEmpty())
             return;
         
@@ -133,6 +134,8 @@ public:
         while (current != NULL) {
             if (current.data == del) {
                 if (prev == NULL) {                 // First
+                    if (first == last)              // Only one Link
+                        last = NULL;
                     first = current->next;
                     delete current;
                     return; 
