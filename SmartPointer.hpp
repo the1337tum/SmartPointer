@@ -16,7 +16,7 @@ private:
     
     /* Mutators */
     void inline assign_pointer(List<Type> *new_ptr) {
-        if (pointer == new_ptr)
+        if (pointer == new_ptr) // a = a
             return;
         
         if (pointer)
@@ -103,5 +103,5 @@ public:
     bool operator>=() {
         
     }
-};/*END LIST - BY TUM.*/
+};/* End SmartPtr - By Tum. */
 
