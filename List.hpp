@@ -15,11 +15,11 @@
  *        in between the greater than signs > >
  *  
  *                local variable
- *  class declaration |
- *    | pointer type  |     constructor function
- *    |     |         |              |
- * |------|***|-| |-----|   |------------------|
- * SLL<SLL<int> > 2d_list = new SLL<SLL<int> >();
+ *  class declaration  |
+ *    | pointer type   |      constructor function
+ *    |       |        |              |
+ * |--------|***|-| |-----|   |--------------------|
+ * List<List<int> > 2d_list = new List<List<int> >();
  *  
  * Or you can add dimensions manually for nicer syntax.. 
  *  but is it *really* worth it..?
@@ -53,8 +53,12 @@
 template <typename Type>
 class Link {
 public:
-    Link<Type> next;
+    Link<Type> next; // To make sure this is who we think it is.
     void *data;
+
+    Link(void *data) {
+        this->data = data;
+    }
 };
 
 template <typename Type>

@@ -23,13 +23,13 @@
  *       | pointer type  |    to an instance of the sub structure
  *       |    |          |                   |
  * |--------|***| |-------|   |--------------------------------|
- * Smart_ptr<int> itterator = new Smart_ptr<int>(&sub_structure);
+ * SmartPtr<int> itterator = new SmartPtr<int>(&sub_structure);
  * 
  * When used with already declared variables, the address it's given 
  * is the address of the smart pointer you're using. Here we have a 
  * Structure class storing an address to our smart pointer.
  * 
- * Smart_ptr<int> = Structure.some_smart_int = iterator;
+ * SmartPtr<int> = Structure.some_smart_int = iterator;
  * 
  *      --- Preformance ---
  * 
@@ -68,14 +68,14 @@ using namespace std;
  *  pointer->pointer;       - the what is being pointed to
  */
 template <typename Type>
-class Smart_ptr{
+class SmartPtr{
 private:
     List<Type> *pointer; // The root pointer - don't touch!
     
     /* Mutators */
     void inline create_pointer(List<Type> *pointer) {
         if (this->pointer)
-            delete_list();
+            delete_pointer();
         
         this->pointer = pointer;
         
@@ -97,11 +97,11 @@ private:
 
 public:
     /* Constructors and Destructors */
-    Smart_ptr(Type *pointee) {
+    SmartPtr(Type *pointee) {
         pointer = new List<Type>(pointee);
     }
     
-    ~Smart_ptr() {
+    ~SmartPtr() {
         delete pointer;
     }
     
@@ -118,7 +118,7 @@ public:
             free(memory);
     }
     
-    Smart_ptr<Type>& operator=(Smart_ptr<Type> const &copy) {
+    SmartPtr<Type>& operator=(SmartPtr<Type> const &copy) {
         if (this == &copy) // a = a
             return *this;
         
