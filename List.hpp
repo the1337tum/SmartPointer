@@ -42,10 +42,8 @@ public:
     
     /* Accessors */
     int inline isEmpty() { return first == NULL; }
-    
-    const List<Type> *getFirst() { return first; }
-    
-    const List<Type> *getLast() { return last; }
+//  const List<Type> *getFirst() { return first; } // Bad encapsulation
+//  const List<Type> *getLast() { return last; }   // Bad encapsulation
     
     int search(void* data) {
         if (isEmpty())
