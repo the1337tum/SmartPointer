@@ -1,6 +1,7 @@
 #include "SmartPtr.hpp"
 #include "SmartPtrNames.h"
 #include <iostream>
+#include <assert.h>
 
 using namespace std;
 

@@ -65,13 +65,19 @@ public:
         if (memory)
             free(memory);
     }
-    
-    SmartPtr<Type>& operator=(SmartPtr<Type> const &copy) {
+    // Note: This creates a new smart pointer
+    SmartPtr<Type>& operator=(const Type &new_ptr) {
+        SmartPtr(*new_ptr);
+         
+        return *this;
+    }
+
+    SmartPtr<Type>& operator=(const SmartPtr<Type> &copy) {
         assign_pointer(copy.get_pointer());
         
         return *this;
     }
-    
+
     Type &operator*() {
         return &(*(pointer->pointer));
     }
