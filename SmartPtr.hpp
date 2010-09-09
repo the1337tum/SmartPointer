@@ -54,7 +54,7 @@ public:
     }
     
     /* Accessors */
-    const List<Type> *get_pointer() {
+    List<Type> *get_pointer() {
         return pointer;
     }
     
@@ -65,22 +65,21 @@ public:
         if (memory)
             free(memory);
     }
-    
-    // Note: This creates a new smart pointer
-    Type& operator=(const Type &new_ptr) {
-        SmartPtr(*new_ptr);
+
+    Type& operator=(Type &new_ptr) {
+        SmartPtr(&new_ptr);
          
         return *this;
     }
     
-    SmartPtr<Type>& operator=(const SmartPtr<Type> &copy) {
+    SmartPtr<Type>& operator=(SmartPtr<Type> &copy) {
         assign_pointer(copy.get_pointer());
         
         return *this;
     }
-
+    
     Type &operator*() {
-        return pointer->(*pointer);
+        return (*pointer->pointer);
     }
     
     Type *operator->() {
@@ -88,27 +87,27 @@ public:
     }
     
     bool operator==(const SmartPtr<Type> &other) {
-        return pointer->pointer == other.pointer;
+        return pointer->pointer == other.get_pointer();
     }
     
     bool operator!=(const SmartPtr<Type> &other) {
-        return pointer->pointer != other.pointer;
+        return pointer->pointer != other.get_pointer();
     }
     
     bool operator<(const SmartPtr<Type> &other) {
-        return pointer->pointer < other.pointer;
+        return pointer->pointer < other.get_pointer();
     }
     
     bool operator<=(const SmartPtr<Type> &other) {
-        return pointer->pointer <= other.pointer;
+        return pointer->pointer <= other.get_pointer();
     }
     
     bool operator>(const SmartPtr<Type> &other) {
-        return pointer->pointer > other.pointer;
+        return pointer->pointer > other.get_pointer();
     }
     
     bool operator>=(const SmartPtr<Type> &other) {
-        return pointer->pointer >= other.pointer;
+        return pointer->pointer >= other.get_pointer();
     }
 };/* End SmartPtr - By Tum. */
 

@@ -16,11 +16,12 @@ public:
 template <typename Type>
 class List {
 private:
-    Type *pointer; //------------------ Assignment Modification
     MyLink<Type> *first;
     MyLink<Type> *last;
 
 public:
+    Type *pointer; //------------------ Assignment Modification
+
     /* Constructor and Destructors */
     List() {
         first = NULL;
