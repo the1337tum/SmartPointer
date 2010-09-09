@@ -64,9 +64,6 @@ public:
     }
     
     SmartPtr<Type>& operator=(SmartPtr<Type> const &copy) {
-        if (this == &copy) // a = a
-            return *this;
-        
         assign_pointer(copy.get_pointer());
         
         return *this;
