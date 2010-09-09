@@ -10,12 +10,6 @@ public:
     int bigArray[1000000];
 };
 
-class Link {
-public:
-    Link *next;
-    int data;
-}
-
 // a function to test whether scope is handled properly
 void testScope()
 {

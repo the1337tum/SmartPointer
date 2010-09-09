@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <new>
 
-template <typename Type>
+//template <typename Type>
 class Link {
 public:
-    Link<Type> *next; // To make sure this is what we think it is.
+//  Link<Type> *next; // To make sure this is what we think it is.
+    Link *next; 
+    
     void* data;
 
     Link(void* data) {
@@ -16,8 +18,8 @@ template <typename Type>
 class List {
 private:
     Type *pointer; //------------------ Assignment Modification
-    Link<Type> *first;
-    Link<Type> *last;
+    Link *first;
+    Link *last;
 
 public:
     /* Constructor and Destructors */
@@ -31,8 +33,8 @@ public:
     }
     
     ~List() {
-        Link<Type> *current = first;
-        Link<Type> *next;
+        Link *current = first;
+        Link *next;
         while(current != NULL) {
             next = current->next;
             delete current;
@@ -43,16 +45,16 @@ public:
     /* Accessors */
     int inline isEmpty() { return first == NULL; }
 
-//  const Link<Type> *getFirst() { return first; } // Bad encapsulation
-//  const Link<Type> *getLast() { return last; }   // Bad encapsulation
+//  const Link *getFirst() { return first; } // Bad encapsulation
+//  const Link *getLast() { return last; }   // Bad encapsulation
     
     int search(void* data) {
         if (isEmpty())
             return 0;
         
-        Link<Type> *current;
+        Link *current;
         for (current = first; current != NULL; current = current->next)
-            if (current.data == data)
+            if (current->data == data)
                 return 1;
         return 0;
     }
@@ -63,10 +65,10 @@ public:
             return 0;
         
         if (isEmpty()) {
-            first = new Link<Type>(data);
+            first = new Link(data);
             last = first;
         } else {
-            last->next = new Link<Type>(data);
+            last->next = new Link(data);
             last = last->next;
         }
         return 1;
@@ -76,11 +78,11 @@ public:
         if (isEmpty())
             return;
         
-        Link<Type> *prev;
-        Link<Type> *current = first;
+        Link *prev;
+        Link *current = first;
         
         while (current != NULL) {
-            if (current.data == del) {
+            if (current->data == del) {
                 if (prev == NULL) {                 // First
                     first = current->next;
                     delete current;
