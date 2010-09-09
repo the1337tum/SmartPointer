@@ -16,8 +16,8 @@ template <typename Type>
 class List {
 private:
     Type *pointer; //------------------ Assignment Modification
-    List<Type> *first;
-    List<Type> *last;
+    Link<Type> *first;
+    Link<Type> *last;
 
 public:
     /* Constructor and Destructors */
@@ -31,8 +31,8 @@ public:
     }
     
     ~SLL() {
-        List<Type> *current = first;
-        List<Type> *next;
+        Link<Type> *current = first;
+        Link<Type> *next;
         while(current != NULL) {
             next = current->next;
             delete current;
@@ -42,14 +42,15 @@ public:
     
     /* Accessors */
     int inline isEmpty() { return first == NULL; }
-//  const List<Type> *getFirst() { return first; } // Bad encapsulation
-//  const List<Type> *getLast() { return last; }   // Bad encapsulation
+
+//  const Link<Type> *getFirst() { return first; } // Bad encapsulation
+//  const Link<Type> *getLast() { return last; }   // Bad encapsulation
     
     int search(void* data) {
         if (isEmpty())
             return 0;
         
-        List<Type> *current;
+        Link<Type> *current;
         for (current = first; current != NULL; current = current->next)
             if (current.data == data)
                 return 1;
@@ -62,10 +63,10 @@ public:
             return 0;
         
         if (isEmpty()) {
-            first = new List<Type>(data);
+            first = new Link<Type>(data);
             last = first;
         } else {
-            last->next = new List<Type>(data);
+            last->next = new Link<Type>(data);
             last = last->next;
         }
         return 1;
@@ -75,8 +76,8 @@ public:
         if (isEmpty())
             return;
         
-        List<Type> *prev;
-        List<Type> *current = first;
+        Link<Type> *prev;
+        Link<Type> *current = first;
         
         while (current != NULL) {
             if (current.data == del) {
