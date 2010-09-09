@@ -18,14 +18,14 @@ private:
     List<Type> *pointer; // The root pointer - don't touch!
     
     /* Mutators */
-    void inline assign_pointer(List<Type> *new_ptr) {
-        if (pointer == new_ptr) // a = a
+    void inline assign_pointer(List<Type> *something_else) {
+        if (pointer == something_else) // a = a
             return;
         
         if (pointer)
             delete_pointer();
         
-        pointer = new_ptr;
+        pointer = something_else;
         
         if (pointer)
             pointer->add(this);
@@ -50,7 +50,7 @@ public:
     }
     
     ~SmartPtr() {
-        delete pointer;
+        delete_pointer();
     }
     
     /* Accessors */
@@ -58,16 +58,8 @@ public:
         return pointer;
     }
     
-    /* Operators */
-    void operator delete(void *memory) {
-        delete_pointer();
-        
-        if (memory)
-            free(memory);
-    }
-
-    Type& operator=(Type &new_ptr) {
-        SmartPtr(&new_ptr);
+    Type& operator=(Type &pointee) {
+        assign_pointer(new List<Type>(&pointee));
          
         return *this;
     }
