@@ -21,16 +21,16 @@ private:
 
 public:
     /* Constructor and Destructors */
-    SLL() {
+    List() {
         first = NULL;
         last = NULL;
     }
     
-    SLL(Type *pointer) {
+    List(Type *pointer) {
         this->pointer = pointer; //---- Assignment Modification
     }
     
-    ~SLL() {
+    ~List() {
         Link<Type> *current = first;
         Link<Type> *next;
         while(current != NULL) {

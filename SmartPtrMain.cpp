@@ -1,6 +1,6 @@
 #include "SmartPtr.hpp"
-
-using namespace SmartPtrNames;
+// SmartPtrNames 
+using namespace std;
 
 // a class that takes up a lot of memory
 class Big {

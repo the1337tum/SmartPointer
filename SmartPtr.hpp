@@ -1,5 +1,8 @@
 #include "List.hpp"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 /** 
  * To explain:
  *  List<Type> *pointer; - the smart pointers (which this is one of)
@@ -32,7 +35,7 @@ private:
         if (! pointer)
             return;
         
-        pointer->del(this)
+        pointer->del(this);
         
         if (pointer->isEmpty())
             delete pointer;
@@ -55,6 +58,11 @@ public:
         return pointer;
     }
     
+    /* Side Effects */
+    void printAllCounts() {
+        std::cout << 
+    }
+
     /* Operators */
     void operator delete(void *memory) {
         delete_pointer();
@@ -77,27 +85,27 @@ public:
         return pointer->pointer;
     }
     
-    bool const operator==(const SmartPtr<Type> &other) {
+    bool operator==(const SmartPtr<Type> &other) {
         return pointer->pointer == other.pointer;
     }
     
-    bool const operator!=(const SmartPtr<Type> &other) {
+    bool operator!=(const SmartPtr<Type> &other) {
         return pointer->pointer != other.pointer;
     }
     
-    bool const operator<(const SmartPtr<Type> &other) {
+    bool operator<(const SmartPtr<Type> &other) {
         return pointer->pointer < other.pointer;
     }
     
-    bool const operator<=(const SmartPtr<Type> &other) {
+    bool operator<=(const SmartPtr<Type> &other) {
         return pointer->pointer <= other.pointer;
     }
     
-    bool const operator>(const SmartPtr<Type> &other) {
+    bool operator>(const SmartPtr<Type> &other) {
         return pointer->pointer > other.pointer;
     }
     
-    bool const operator>=(const SmartPtr<Type> &other) {
+    bool operator>=(const SmartPtr<Type> &other) {
         return pointer->pointer >= other.pointer;
     }
 };/* End SmartPtr - By Tum. */
