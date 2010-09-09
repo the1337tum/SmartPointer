@@ -43,7 +43,7 @@ private:
 public:
     /* Constructors and Destructors */
     SmartPtr(Type *pointee) {
-        pointer = new List<Type>(pointee);
+        assign_pointer(new List<Type>(pointee));
     }
     
     ~SmartPtr() {
@@ -77,27 +77,27 @@ public:
         return pointer->pointer;
     }
     
-    bool const operator==(SmartPtr<Type> const &other) {
+    bool const operator==(const SmartPtr<Type> &other) {
         return pointer->pointer == other.pointer;
     }
     
-    bool const operator!=(SmartPtr<Type> const &other) {
+    bool const operator!=(const SmartPtr<Type> &other) {
         return pointer->pointer != other.pointer;
     }
     
-    bool const operator<(SmartPtr<Type> const &other) {
+    bool const operator<(const SmartPtr<Type> &other) {
         return pointer->pointer < other.pointer;
     }
     
-    bool const operator<=(SmartPtr<Type> const &other) {
+    bool const operator<=(const SmartPtr<Type> &other) {
         return pointer->pointer <= other.pointer;
     }
     
-    bool const operator>(SmartPtr<Type> const &other) {
+    bool const operator>(const SmartPtr<Type> &other) {
         return pointer->pointer > other.pointer;
     }
     
-    bool const operator>=(SmartPtr<Type> const &other) {
+    bool const operator>=(const SmartPtr<Type> &other) {
         return pointer->pointer >= other.pointer;
     }
 };/* End SmartPtr - By Tum. */
