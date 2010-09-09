@@ -1,5 +1,4 @@
-#include "SmartPtr.h"
-#include "SmartPointer.hpp"
+#include "SmartPtr.hpp"
 
 using namespace SmartPtrNames;
 
