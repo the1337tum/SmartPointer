@@ -1,5 +1,7 @@
 #include "SmartPtr.hpp"
-// SmartPtrNames 
+#include "SmartPtrNames.h"
+#include <iostream>
+
 using namespace std;
 
 // a class that takes up a lot of memory
@@ -7,6 +9,12 @@ class Big {
 public:
     int bigArray[1000000];
 };
+
+class Link {
+public:
+    Link *next;
+    int data;
+}
 
 // a function to test whether scope is handled properly
 void testScope()

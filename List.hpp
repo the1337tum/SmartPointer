@@ -4,7 +4,7 @@
 template <typename Type>
 class Link {
 public:
-    Link<Type> next; // To make sure this is what we think it is.
+    Link<Type> *next; // To make sure this is what we think it is.
     void* data;
 
     Link(void* data) {

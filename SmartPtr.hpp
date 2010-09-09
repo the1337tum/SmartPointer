@@ -58,11 +58,6 @@ public:
         return pointer;
     }
     
-    /* Side Effects */
-    void printAllCounts() {
-        std::cout << 
-    }
-
     /* Operators */
     void operator delete(void *memory) {
         delete_pointer();
