@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <new>
 
-//template <typename Type>
-class Link {
+// God damn that name is annoying..
+template <typename Type>
+class MyLink {
 public:
-//  Link<Type> *next; // To make sure this is what we think it is.
-    Link *next; 
-    
+    MyLink<Type> *next; // To make sure this is what we think it is.
     void* data;
 
-    Link(void* data) {
+    MyLink(void* data) {
         this->data = data;
     }
 };
@@ -18,8 +17,8 @@ template <typename Type>
 class List {
 private:
     Type *pointer; //------------------ Assignment Modification
-    Link *first;
-    Link *last;
+    MyLink<Type> *first;
+    MyLink<Type> *last;
 
 public:
     /* Constructor and Destructors */
@@ -33,8 +32,8 @@ public:
     }
     
     ~List() {
-        Link *current = first;
-        Link *next;
+        MyLink<Type> *current = first;
+        MyLink<Type> *next;
         while(current != NULL) {
             next = current->next;
             delete current;
@@ -45,14 +44,14 @@ public:
     /* Accessors */
     int inline isEmpty() { return first == NULL; }
 
-//  const Link *getFirst() { return first; } // Bad encapsulation
-//  const Link *getLast() { return last; }   // Bad encapsulation
+//  const MyLink<Type> *getFirst() { return first; } // Bad encapsulation
+//  const MyLink<Type> *getLast() { return last; }   // Bad encapsulation
     
     int search(void* data) {
         if (isEmpty())
             return 0;
         
-        Link *current;
+        MyLink<Type> *current;
         for (current = first; current != NULL; current = current->next)
             if (current->data == data)
                 return 1;
@@ -65,10 +64,10 @@ public:
             return 0;
         
         if (isEmpty()) {
-            first = new Link(data);
+            first = new MyLink<Type>(data);
             last = first;
         } else {
-            last->next = new Link(data);
+            last->next = new MyLink<Type>(data);
             last = last->next;
         }
         return 1;
@@ -78,8 +77,8 @@ public:
         if (isEmpty())
             return;
         
-        Link *prev;
-        Link *current = first;
+        MyLink<Type> *prev;
+        MyLink<Type> *current = first;
         
         while (current != NULL) {
             if (current->data == del) {

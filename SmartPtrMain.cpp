@@ -11,6 +11,13 @@ public:
     int bigArray[1000000];
 };
 
+// an extremely simple linked list class
+class Link {
+public:
+    Link *next;
+    int data;
+};
+
 // a function to test whether scope is handled properly
 void testScope()
 {
