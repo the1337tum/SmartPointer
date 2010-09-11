@@ -1,5 +1,4 @@
 #include "List.hpp"
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,14 +17,14 @@ private:
     List<Type> *pointer; // The root pointer - don't touch!
     
     /* Mutators */
-    void inline assign_pointer(List<Type> *something_else) {
-        if (pointer == something_else) // a = a
+    void inline assign_pointer(List<Type> *new_ptr) {
+        if (pointer == new_ptr) // a = a
             return;
         
         if (pointer)
             delete_pointer();
         
-        pointer = something_else;
+        pointer = new_ptr;
         
         if (pointer)
             pointer->add(this);
@@ -58,20 +57,18 @@ public:
         return pointer;
     }
     
-    Type& operator=(Type &pointee) {
+    SmartPtr<Type>& operator=(Type &pointee) {
         assign_pointer(new List<Type>(&pointee));
          
         return *this;
     }
     
     SmartPtr<Type>& operator=(SmartPtr<Type> &copy) {
-        assign_pointer(copy.get_pointer());
-        
-        return *this;
+        operator=(copy.get_pointer);   
     }
     
     Type &operator*() {
-        return (*pointer->pointer);
+        return *(pointer->pointer);
     }
     
     Type *operator->() {

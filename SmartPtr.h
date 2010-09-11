@@ -1,5 +1,6 @@
 #ifndef SMARTPTRNAMES_H_
 #define SMARTPTRNAMES_H_
+
 // I hate this header file. So much.
 #include <string.h>
 #include "List.hpp"
@@ -7,8 +8,10 @@
 
 using namespace std;
 
+namespace SmartPtrNames {
+#include "SmartPtr.hpp"
 
-class SmartPtrNames {
+class SmartPtrNames{
 private:
     static List<void*> pointers;
 public:
@@ -21,16 +24,17 @@ public:
     void static del_pointer(void *pointer) {
         pointers.del(pointer);
     }
-    void static printAllCounts(char *header); 
-};
-namespace SmartPtrNames {
-    void SmartPtrNames::printAllCounts(){
-        cout << header << endl;
-        MyLink<void*> *current = pointers.getFirst();
-        while(current != NULL) {
-            cout << current << endl;
-            current = current->next;
-        }
+    void static printAllCounts(char *header) {
+    cout << header << endl;
+    MyLink<void*> *current = pointers.getFirst();
+    while(current != NULL) {
+        cout << current << endl;
+        current = current->next;
     }
+}
 };
+
+
+
+}
 #endif

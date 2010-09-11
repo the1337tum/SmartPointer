@@ -1,3 +1,6 @@
+#ifndef _Link_H_
+#define _Link_H_
+
 #include <stdio.h>
 #include <new>
 
@@ -6,9 +9,9 @@ template <typename Type>
 class MyLink {
 public:
     MyLink<Type> *next; // To make sure this is what we think it is.
-    void* data;
+    Type data;
 
-    MyLink(void* data) {
+    MyLink(Type data) {
         this->data = data;
     }
 };
@@ -20,7 +23,7 @@ private:
     MyLink<Type> *last;
 
 public:
-    Type *pointer; //------------------ Assignment Modification
+    void *pointer; //------------------ Assignment Modification
 
     /* Constructor and Destructors */
     List() {
@@ -28,7 +31,7 @@ public:
         last = NULL;
     }
     
-    List(Type *pointer) {
+    List(void *pointer) {
         this->pointer = pointer; //---- Assignment Modification
     }
     
@@ -45,10 +48,10 @@ public:
     /* Accessors */
     int inline isEmpty() { return first == NULL; }
 
-//  const MyLink<Type> *getFirst() { return first; } // Bad encapsulation
-//  const MyLink<Type> *getLast() { return last; }   // Bad encapsulation
+    MyLink<Type> *getFirst() { return first; }
+    MyLink<Type> *getLast() { return last; }
     
-    int search(void* data) {
+    int search(Type data) {
         if (isEmpty())
             return 0;
         
@@ -60,7 +63,7 @@ public:
     }
     
     /* Mutators */
-    int add(void* data) {
+    int add(Type data) {
         if(search(data)) // No duplicates - remove for preformace
             return 0;
         
@@ -74,7 +77,7 @@ public:
         return 1;
     }
     
-    void del(void* del) {
+    void del(Type del) {
         if (isEmpty())
             return;
         
@@ -103,4 +106,4 @@ public:
         }
     }
 };/* End List - By Tum. */
-
+#endif
