@@ -1,0 +1,2 @@
+There are more efficent ways of doing this.
+This creates an object for every smart pointer - which is very inefficent.
