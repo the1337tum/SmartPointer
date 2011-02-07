@@ -1,7 +1,3 @@
-
-#include <map>
-#include <string>
-#include <iostream>
 #include "Pointers.hpp"
 
 using namespace std;
@@ -77,6 +73,7 @@ public:
     Type *operator->() {
         return pointer;
     }
+    
     // Smart Pointer operators
     bool operator==(const SmartPtr<Type> &other) {
         return pointer == other.pointer;
